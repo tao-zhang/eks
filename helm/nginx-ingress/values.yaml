@@ -118,8 +118,8 @@ controller:
   ## E.g. to specify the default SSL certificate you can use
   ## extraArgs:
   ##   default-ssl-certificate: "<namespace>/<secret_name>"
-  # extraArgs:
-  #   default-ssl-certificate: "ingress/greenbuild.com"
+  extraArgs:
+    default-ssl-certificate: "ingress/greenbuild.io"
 
   ## Additional environment variables to set
   extraEnvs: []
