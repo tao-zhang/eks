@@ -246,6 +246,10 @@ controller:
     enabled: true
 
     annotations: {}
+      ## Specify load balancer IP
+      # service.beta.kubernetes.io/aws-load-balancer-eip-allocations: eipalloc-0a4f0b6f5c6e1cb40
+      # service.beta.kubernetes.io/aws-load-balancer-type: nlb
+
     labels: {}
     ## Deprecated, instead simply do not provide a clusterIP value
     omitClusterIP: false
