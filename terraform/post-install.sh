@@ -13,4 +13,5 @@ kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/down
 
 
 ../helm/jenkins/bin/create-ns.sh
+kubectl create -f ../helm/jenkins/k8s-credentials-provider
 ../helm/jenkins/bin/install.sh
