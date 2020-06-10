@@ -213,7 +213,9 @@ master:
   # loadBalancerIP: 1.2.3.4
   # Optionally configure a JMX port
   # requires additional javaOpts, ie
-  # javaOpts: >
+  javaOpts: >
+    -Dio.jenkins.plugins.artifact_manager_jclouds.s3.S3BlobStoreConfig.deleteArtifacts=true
+    -Dio.jenkins.plugins.artifact_manager_jclouds.s3.S3BlobStoreConfig.deleteStashes=true
   #   -Dcom.sun.management.jmxremote.port=4000
   #   -Dcom.sun.management.jmxremote.authenticate=false
   #   -Dcom.sun.management.jmxremote.ssl=false
@@ -234,6 +236,8 @@ master:
     - timestamper:latest
     - kubernetes-credentials-provider:0.14
     - job-dsl:latest
+    - jobConfigHistory:latest
+    - artifact-manager-s3:latest
 
   # List of plugins to install in addition to those listed in master.installPlugins
   additionalPlugins: []
@@ -288,6 +292,19 @@ master:
         jobs:
         - url: https://raw.githubusercontent.com/tao-zhang/jenkins-dsl-jobs/master/jobs/pipeline-script.groovy
         - url: https://raw.githubusercontent.com/tao-zhang/jenkins-dsl-jobs/master/jobs/pipeline-scm.groovy
+      aws: |
+        aws:
+          awsCredentials:
+            credentialsId: "aws-credentials"
+            region: "eu-west-1"
+          s3:
+            container: "gbartifacts"
+      s3-artifact: |
+        unclassified:
+          artifactManager:
+            artifactManagerFactories:
+            - jclouds:
+                provider: "s3"
 
     # Ignored if securityRealm is defined in master.JCasC.configScripts and
     # ignored if master.enableXmlConfig=true as master.securityRealm takes precedence
