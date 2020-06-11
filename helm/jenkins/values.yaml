@@ -299,7 +299,8 @@ master:
             credentialsId: "aws-credentials"
             region: "eu-west-1"
           s3:
-            container: "gbartifacts"
+            container: "gb-jenkins"
+            prefix: "artifacts/"
       s3-artifact: |
         unclassified:
           artifactManager:
@@ -808,7 +809,7 @@ serviceAccountAgent:
 backup:
   # Backup must use RBAC
   # So by enabling backup you are enabling RBAC specific for backup
-  enabled: false
+  enabled: true
   # Used for label app.kubernetes.io/component
   componentName: "backup"
   # Schedule to run jobs. Must be in cron time format
@@ -826,7 +827,10 @@ backup:
   # Ref: https://github.com/maorfr/kube-tasks#simple-backup
   extraArgs: []
   # Add existingSecret for AWS credentials
-  existingSecret: {}
+  existingSecret:
+    aws-credentials:
+      awsaccesskey: accessKey
+      awssecretkey: secretKey
   ## Example for using an existing secret
    # jenkinsaws:
   ## Use this key for AWS access key ID
@@ -837,7 +841,9 @@ backup:
    # jenkinsgcp:
   ## Use this key for GCP credentials
      # gcpcredentials: credentials.json
-  env: []
+  env:
+  - name: "AWS_REGION"
+    value: "eu-west-1"
   # Example environment variable required for AWS credentials chain
   # - name: "AWS_REGION"
   #   value: "us-east-1"
@@ -852,5 +858,5 @@ backup:
   # Supported cloud storage services: AWS S3, Minio S3, Azure Blob Storage, Google Cloud Storage
   # Additional support can added. Visit this repository for details
   # Ref: https://github.com/maorfr/skbn
-  destination: "s3://jenkins-data/backup"
+  destination: "s3://gb-jenkins/backup"
 checkDeprecation: true
