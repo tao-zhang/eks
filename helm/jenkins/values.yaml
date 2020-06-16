@@ -237,7 +237,7 @@ master:
     - kubernetes-credentials-provider:latest
     - job-dsl:latest
     - jobConfigHistory:latest
-    - artifact-manager-s3:latest
+    - artifact-manager-s3:1.9
     - config-file-provider:latest
 
   # List of plugins to install in addition to those listed in master.installPlugins
