@@ -7,6 +7,8 @@
 
 ../helm/jenkins/bin/uninstall.sh
 
+../helm/prometheus-operator/bin/uninstall.sh
+
 # Terraform
 
 terraform destroy --auto-approve
