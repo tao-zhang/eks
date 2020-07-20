@@ -571,8 +571,8 @@ imagePullSecrets: []
 # TCP service key:value pairs
 # Ref: https://github.com/kubernetes/contrib/tree/master/ingress/controllers/nginx/examples/tcp
 ##
-tcp: {}
-#  8080: "default/example-tcp-svc:9000"
+tcp:
+  8080: "jenkins/jenkins:8080"
 
 # UDP service key:value pairs
 # Ref: https://github.com/kubernetes/contrib/tree/master/ingress/controllers/nginx/examples/udp
