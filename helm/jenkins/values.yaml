@@ -240,6 +240,7 @@ master:
     - artifact-manager-s3:1.9
     - config-file-provider:latest
     - prometheus:latest
+    - github-branch-source:latest
 
   # List of plugins to install in addition to those listed in master.installPlugins
   additionalPlugins: []
@@ -294,6 +295,7 @@ master:
         jobs:
         - url: https://raw.githubusercontent.com/tao-zhang/jenkins-dsl-jobs/master/jobs/pipeline-script.groovy
         - url: https://raw.githubusercontent.com/tao-zhang/jenkins-dsl-jobs/master/jobs/pipeline-scm.groovy
+        - url: https://raw.githubusercontent.com/tao-zhang/jenkins-dsl-jobs/master/jobs/github-organization.groovy
       aws: |
         aws:
           awsCredentials:
@@ -308,6 +310,13 @@ master:
             artifactManagerFactories:
             - jclouds:
                 provider: "s3"
+      github: |
+        unclassified:
+          gitHubPluginConfig:
+            configs:
+            - credentialsId: "github-token"
+              name: "github"
+            hookUrl: "https://jenkins.greenbuild.io/github-webhook/"
       maven-settings: |
         unclassified:
           globalConfigFiles:

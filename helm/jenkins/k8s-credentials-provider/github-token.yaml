@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  namespace: jenkins
+  name: "github-token"
+  labels:
+    "jenkins.io/credentials-type": "secretText"
+  annotations:
+    "jenkins.io/credentials-description" : "Github token"
+type: Opaque
+stringData:
+  text: a6e4250b7428eec37d45e0624128dfe9a702d63a
