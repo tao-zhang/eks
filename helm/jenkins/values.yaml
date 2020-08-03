@@ -241,6 +241,7 @@ master:
     - config-file-provider:latest
     - prometheus:latest
     - github-branch-source:latest
+    - azure-artifact-manager:lastest
 
   # List of plugins to install in addition to those listed in master.installPlugins
   additionalPlugins: []
